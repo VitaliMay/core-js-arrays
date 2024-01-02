@@ -117,9 +117,6 @@ function removeFalsyValues(arr) {
   }
   return [];
 }
-// function removeFalsyValues(/* arr */) {
-//   throw new Error('Not implemented');
-// }
 
 /**
  * Returns an array containing the lengths of each string in a specified array of strings.
@@ -149,8 +146,17 @@ function getStringsLength(arr) {
  *   getAverage([ 1, 10, 100, 1000 ])  => 277,75
  *   getAverage([ 2, 3, 3 ])  => 2,67
  */
-function getAverage(/* arr */) {
-  throw new Error('Not implemented');
+function getAverage(arr) {
+  if (arr.length) {
+    let count = 0;
+    const average =
+      arr.reduce(function sum(acc, item) {
+        count += 1;
+        return acc + item;
+      }, 0) / count;
+    return Number(average.toFixed(2));
+  }
+  return 0;
 }
 
 /**
