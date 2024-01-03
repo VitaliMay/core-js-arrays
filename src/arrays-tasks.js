@@ -441,9 +441,28 @@ function getElementByIndices(arr, indices) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  const result = arr.reduce((count, item) => {
+    if (!item) {
+      return count + 1;
+    }
+    return count;
+  }, 0);
+
+  return result;
 }
+// function getFalsyValuesCount(arr) {
+//   let result = 0;
+//   if (arr.length) {
+//     arr.map((item) => {
+//       if (!item) {
+//         result += 1;
+//       }
+//       return item;
+//     });
+//   }
+//   return result;
+// }
 
 /**
  * Creates an identity matrix of the specified size.
@@ -463,8 +482,19 @@ function getFalsyValuesCount(/* arr */) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  return Array(n)
+    .fill(0)
+    .map((item, index) =>
+      Array(n)
+        .fill(0)
+        .map((el, i) => {
+          if (index === i) {
+            return 1;
+          }
+          return el;
+        })
+    );
 }
 
 /**
@@ -478,8 +508,13 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbersArr) {
+  return numbersArr.reduce((result, el, index) => {
+    if (el % 2 !== 0) {
+      result.push(index);
+    }
+    return result;
+  }, []);
 }
 
 /**
