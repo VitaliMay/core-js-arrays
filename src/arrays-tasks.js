@@ -408,9 +408,6 @@ function generateOdds(len) {
     .fill(0)
     .map((item, index) => index * 2 + 1);
 }
-// function generateOdds(/* len */) {
-//   throw new Error('Not implemented');
-// }
 
 /**
  * Returns an element from the multidimensional array by the specified indices.
@@ -424,8 +421,12 @@ function generateOdds(len) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
+function getElementByIndices(arr, indices) {
+  if (indices.length === 1) {
+    return arr[indices[0]];
+  }
+  const [currentIndex, ...restArrIndices] = indices;
+  return getElementByIndices(arr[currentIndex], restArrIndices);
 }
 
 /**
