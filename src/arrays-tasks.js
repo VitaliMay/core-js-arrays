@@ -352,8 +352,11 @@ function selectMany(arr, childrenSelector) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+function calculateBalance(arr) {
+  return arr.reduce(
+    (balance, [income, expense]) => balance + (income - expense),
+    0
+  );
 }
 
 /**
@@ -368,9 +371,25 @@ function calculateBalance(/* arr */) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+function createChunks(arr, chunkSize) {
+  if (arr.length <= chunkSize) {
+    return [arr];
+  }
+  return [
+    arr.slice(0, chunkSize),
+    ...createChunks(arr.slice(chunkSize), chunkSize),
+  ];
 }
+// function createChunks(arr, chunkSize) {
+//   return arr.reduce((result, item, index) => {
+//     const chunkIndex = Math.floor(index / chunkSize);
+//     if (!result[chunkIndex]) {
+//       result[chunkIndex] = [];
+//     }
+//     result[chunkIndex].push(item);
+//     return result;
+//   }, []);
+// }
 
 /**
  * Generates an array of odd numbers of the specified length.
@@ -384,9 +403,14 @@ function createChunks(/* arr, chunkSize */) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  return Array(len)
+    .fill(0)
+    .map((item, index) => index * 2 + 1);
 }
+// function generateOdds(/* len */) {
+//   throw new Error('Not implemented');
+// }
 
 /**
  * Returns an element from the multidimensional array by the specified indices.
