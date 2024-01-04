@@ -580,9 +580,45 @@ function findCommonElements(arr1, arr2) {
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
 
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+  if (nums.length === 0) {
+    return 0;
+  }
+
+  const resultArr = new Array(nums.length).fill(1);
+
+  resultArr.map((item, i) => {
+    const subArray = nums.slice(0, i + 1);
+    subArray.map((el, j) => {
+      if (el < subArray[j + 1]) {
+        resultArr[j + 1] = resultArr[j] + 1;
+      }
+      return 1;
+    });
+    return item;
+  });
+  return Math.max(...resultArr);
 }
+// Ерунду написал конечно, return 1 и return item не нужны , но как иначе успокоить линтер не придумал(;
+
+// function findLongestIncreasingSubsequence(nums) {
+//   if (nums.length === 0) {
+//     return 0;
+//   }
+
+//   const resultArr = new Array(nums.length).fill(1);
+//   for (let i = 1; i < nums.length; i += 1) {
+//     for (let j = 0; j < i; j += 1) {
+//       if (nums[j] < nums[j + 1]) {
+//         resultArr[j + 1] = resultArr[j] + 1;
+//       }
+//     }
+//   }
+//   return Math.max(...resultArr);
+// }
+// function findLongestIncreasingSubsequence(/* nums */) {
+//   throw new Error('Not implemented');
+// }
 
 /**
  * Propagates every item in sequence its position times
