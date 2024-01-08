@@ -111,12 +111,17 @@ function findAllOccurrences(arr, search) {
  *    removeFalsyValues([ 1, 2, 3, 4, 5, 'false' ]) => [ 1, 2, 3, 4, 5, 'false' ]
  *    removeFalsyValues([ false, 0, NaN, '', undefined ]) => [ ]
  */
+
 function removeFalsyValues(arr) {
   if (arr.length) {
     return arr.filter((item) => Boolean(item));
   }
   return [];
 }
+
+// function removeFalsyValues(arr) {
+//   return arr.filter((item) => item);
+// }
 
 /**
  * Returns an array containing the lengths of each string in a specified array of strings.
@@ -352,12 +357,20 @@ function selectMany(arr, childrenSelector) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
+
 function calculateBalance(arr) {
   return arr.reduce(
     (balance, [income, expense]) => balance + (income - expense),
     0
   );
 }
+
+// function calculateBalance(arr) {
+//   return arr.reduce(
+//     (balance, dataArr) => balance + (dataArr[0] - dataArr[1]),
+//     0
+//   );
+// }
 
 /**
  * Breaks an array into chunks of the specified size.
@@ -451,6 +464,9 @@ function getFalsyValuesCount(arr) {
 
   return result;
 }
+// function getFalsyValuesCount(arr) {
+//   return arr.filter((item) => !item).length;
+// }
 // function getFalsyValuesCount(arr) {
 //   let result = 0;
 //   if (arr.length) {
@@ -588,17 +604,47 @@ function findLongestIncreasingSubsequence(nums) {
   const resultArr = new Array(nums.length).fill(1);
 
   resultArr.map((item, i) => {
-    const subArray = nums.slice(0, i + 1);
-    subArray.map((el, j) => {
-      if (el < subArray[j + 1]) {
-        resultArr[j + 1] = resultArr[j] + 1;
-      }
-      return 1;
-    });
-    return item;
+    if (nums[i] < nums[i + 1]) {
+      resultArr[i + 1] = item + 1;
+    }
+    return 1;
   });
   return Math.max(...resultArr);
 }
+// function findLongestIncreasingSubsequence(nums) {
+//   if (nums.length === 0) {
+//     return 0;
+//   }
+
+//   const resultArr = new Array(nums.length).fill(1);
+
+//   resultArr.map((item, i) => {
+//     if (nums[i] < nums[i + 1]) {
+//       resultArr[i + 1] = resultArr[i] + 1;
+//     }
+//     return 1;
+//   });
+//   return Math.max(...resultArr);
+// }
+// function findLongestIncreasingSubsequence(nums) {
+//   if (nums.length === 0) {
+//     return 0;
+//   }
+
+//   const resultArr = new Array(nums.length).fill(1);
+
+//   resultArr.map((item, i) => {
+//     const subArray = nums.slice(0, i + 1);
+//     subArray.map((el, j) => {
+//       if (el < subArray[j + 1]) {
+//         resultArr[j + 1] = resultArr[j] + 1;
+//       }
+//       return 1;
+//     });
+//     return item;
+//   });
+//   return Math.max(...resultArr);
+// }
 // Ерунду написал конечно, return 1 и return item не нужны , но как иначе успокоить линтер не придумал(;
 
 // function findLongestIncreasingSubsequence(nums) {
